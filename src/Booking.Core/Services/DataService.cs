@@ -20,7 +20,6 @@ public class DataService : IDataService
         };
 
         using var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-        using var streamReader = new StreamReader(fileStream);
         var data = JsonSerializer.Deserialize<IEnumerable<T>>(fileStream, jsonOptions);
         return data;
     }
