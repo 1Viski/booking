@@ -1,6 +1,6 @@
 ﻿namespace Booking.Core.Enums;
 
-public enum Choice
+public enum StringChoice
 {
     Hotels,
     Availability

@@ -1,5 +1,6 @@
 ﻿using Booking.App;
 using Booking.Core.Abstracts;
+using Booking.Core.Factories;
 using Booking.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,7 +11,7 @@ var builder = Host
     {
         services.AddSingleton<App>();
         services.AddScoped<IDataService, DataService>();
-        services.AddScoped<IQueryService, QueryService>();
+        services.AddScoped<IChoiceFactory, ChoiceFactory>();
     })
     .Build();
 
