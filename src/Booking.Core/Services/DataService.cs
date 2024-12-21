@@ -8,6 +8,15 @@ namespace Booking.Core.Services;
 
 public class DataService : IDataService
 {
+    private readonly IStream _fileStream;
+    private readonly IJsonSerializer _jsonSerializer;
+
+    public DataService(IStream fileStream, IJsonSerializer jsonSerializer)
+    {
+        _fileStream = fileStream;
+        _jsonSerializer = jsonSerializer;
+    }
+
     public IEnumerable<T>? GetData<T>(string path) where T : class
     {
         var jsonOptions = new JsonSerializerOptions
@@ -20,8 +29,8 @@ public class DataService : IDataService
             }
         };
 
-        using var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-        var data = JsonSerializer.Deserialize<IEnumerable<T>>(fileStream, jsonOptions);
+        using var fileStream = _fileStream.GetStream(path);
+        var data = _jsonSerializer.Deserialize<IEnumerable<T>>(fileStream, jsonOptions);
         return data;
     }
     
