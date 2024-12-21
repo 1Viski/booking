@@ -58,66 +58,13 @@ public class DataServiceTests
                                   """;
 
         var mockFileStream = new Mock<IStream>();
-        var mockJsonSerializer = new Mock<IJsonSerializer>();
         
         mockFileStream
             .Setup(x => x.GetStream(It.IsAny<string>(), FileMode.Open, FileAccess.Read, FileShare.Read))
             .Returns(new MemoryStream(System.Text.Encoding.UTF8.GetBytes(jsonHotels)));
 
-        mockJsonSerializer
-            .Setup(x => x.Deserialize<IEnumerable<Hotel>>(
-                It.IsAny<Stream>(), It.IsAny<JsonSerializerOptions?>()))
-            .Returns(
-                [
-                    new Hotel
-                    {
-                        Id = "H1",
-                        Name = "Hotel California",
-                        RoomTypes = 
-                        [
-                            new RoomType
-                            {
-                                Code = RoomTypeCode.SGL,
-                                Description = "Single Room",
-                                Amenities = ["WiFi", "TV"],
-                                Features = ["Non-smoking"]
-                            },
-                            new RoomType
-                            {
-                                Code = RoomTypeCode.SGL,
-                                Description = "Double Room",
-                                Amenities = ["WiFi", "TV", "Minibar"],
-                                Features = ["Non-smoking", "Sea View"]
-                            }
-                        ],
-                        Rooms =
-                        [
-                            new Room
-                            {
-                                RoomType = RoomTypeCode.SGL,
-                                RoomId = "101",
-                            },
-                            new Room
-                            {
-                                RoomType = RoomTypeCode.SGL,
-                                RoomId = "102",
-                            },
-                            new Room
-                            {
-                                RoomType = RoomTypeCode.SGL,
-                                RoomId = "201",
-                            },
-                            new Room
-                            {
-                                RoomType = RoomTypeCode.SGL,
-                                RoomId = "202",
-                            },
-                        ]
-                    }
-                ]);
-
         //Act
-        var dataService = new DataService(mockFileStream.Object, mockJsonSerializer.Object);
+        var dataService = new DataService(mockFileStream.Object);
         var result = dataService.GetData<Hotel>(It.IsAny<string>());
         
         //Assert
