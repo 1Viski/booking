@@ -118,7 +118,7 @@ public class DataServiceTests
 
     [Theory]
     [ClassData(typeof(FakeBookingRequestInvalidData))]
-    public void GetResponseTestShouldBeNull(BookingRequest request)
+    public void GetResponseTestShouldBeEmpty(BookingRequest request)
     {
         //Arrange
         
