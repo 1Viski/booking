@@ -26,4 +26,8 @@
       <ProjectReference Include="..\..\src\Booking.Core\Booking.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Choices\" />
+    </ItemGroup>
+
 </Project>
