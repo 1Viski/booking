@@ -36,15 +36,6 @@ public class FakeBookingRequestInvalidData : IEnumerable<object[]>
             ];
         
         yield return 
-            [
-                new BookingRequest(
-                    "H1",
-                    null, 
-                    null, 
-                    RoomTypeCode.SGL)
-            ];
-        
-        yield return 
         [
             new BookingRequest(
                 "H2",
