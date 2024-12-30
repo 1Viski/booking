@@ -14,6 +14,7 @@ var builder = Host
         services.AddScoped<IDataService, DataService>();
         services.AddScoped<IChoiceFactory, ChoiceFactory>();
         services.AddScoped<IStream, FileStreamIO>();
+        services.AddScoped<IConsole, ConsoleIO>();
     })
     .Build();
 

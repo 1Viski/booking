@@ -1,15 +1,16 @@
 ﻿using Booking.Core.Models;
-using Spectre.Console;
 
 namespace Booking.Core.Abstracts;
 
 public abstract class BaseChoice
 {
     private readonly IDataService _dataService;
+    private readonly IConsole _console;
 
-    protected BaseChoice(IDataService dataService)
+    protected BaseChoice(IDataService dataService, IConsole console)
     {
         _dataService = dataService;
+        _console = console;
     }
 
     public abstract void OnChoice(string hotelsPath, string bookingsPath);
@@ -53,9 +54,9 @@ public abstract class BaseChoice
         }
     }
 
-    private static void WriteLineException(Exception exception)
+    private void WriteLineException(Exception exception)
     {
-        AnsiConsole.MarkupLine("[red]Something goes wrong.[/] Please try again later.");
-        AnsiConsole.WriteLine(exception.Message);
+        _console.MarkupLine("[red]Something goes wrong.[/] Please try again later.");
+        _console.WriteLine(exception.Message);
     }
 }
