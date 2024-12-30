@@ -1,5 +1,7 @@
 # booking
 
+> First of all clone repository to your device
+
 ### Run application:
 
 `bookings.exe --hotels <PATH_TO_JSON> --bookings <PATH_TO_JSON>`
